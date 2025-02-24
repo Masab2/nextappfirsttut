@@ -9,11 +9,22 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { useRouter } from "next/navigation";
+import React from "react"
+
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
+  const [user, setUser] = React.useState({
+    email: "",
+    password: "",
+  });
+
+  async function onSignUp() {
+    
+  }
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
@@ -33,6 +44,7 @@ export function LoginForm({
                   type="email"
                   placeholder="m@example.com"
                   required
+                  value={user.email}
                 />
               </div>
               <div className="grid gap-2">
@@ -45,9 +57,9 @@ export function LoginForm({
                     Forgot your password?
                   </a>
                 </div>
-                <Input id="password" type="password" required />
+                <Input id="password" type="password" required value={user.password} />
               </div>
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full" onClick={onSignUp}>
                 Login
               </Button>
               <Button variant="outline" className="w-full">
