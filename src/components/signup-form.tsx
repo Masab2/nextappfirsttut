@@ -12,11 +12,12 @@ import { Label } from "@/components/ui/label";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-export function LoginForm({
+export function SignUpForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
   const [user, setUser] = React.useState({
+    username: "",
     email: "",
     password: "",
   });
@@ -34,14 +35,25 @@ export function LoginForm({
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
         <CardHeader>
-          <CardTitle className="text-2xl">Login</CardTitle>
+          <CardTitle className="text-2xl">Create an Account</CardTitle>
           <CardDescription>
-            Enter your email below to login to your account
+            Register your email to Create your account
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={onSignUp}>
             <div className="flex flex-col gap-6">
+              <div className="grid gap-2">
+                <Label htmlFor="userName">Name</Label>
+                <Input
+                  id="username"
+                  type="text"
+                  placeholder="jhon deo"
+                  required
+                  value={user.username}
+                  onChange={handleChange}
+                />
+              </div>
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
@@ -72,13 +84,13 @@ export function LoginForm({
                 Forgot your password?
               </a>
               <Button type="submit" className="w-full">
-                Login
+                Create Account
               </Button>
             </div>
             <div className="mt-4 text-center text-sm">
-              Don&apos;t have an account?{" "}
-              <a href="/signup" className="underline underline-offset-4">
-                Sign up
+              Already have an Account? 
+              <a  href="/login" className="underline underline-offset-4 ml-3">
+                Login
               </a>
             </div>
           </form>
